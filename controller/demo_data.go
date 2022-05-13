@@ -38,15 +38,3 @@ var DemoUser = model.UserInfo{
 	FollowerCount: 0,
 	IsFollow:      false,
 }
-
-var usersLoginInfo = map[string]model.UserInfo{
-	"zhangleidouyin": {
-		User: model.User{
-			Id:   1,
-			Name: "zhanglei",
-		},
-		FollowCount:   10,
-		FollowerCount: 5,
-		IsFollow:      true,
-	},
-}

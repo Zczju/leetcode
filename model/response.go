@@ -23,6 +23,12 @@ type UserInfo struct {
 	IsFollow      bool  `json:"is_follow,omitempty"`
 }
 
+type UserRegisterResponse struct {
+	Response
+	UserId int64  `json:"user_id,omitempty"`
+	Token  string `json:"token"`
+}
+
 type UserLoginResponse struct {
 	Response
 	UserId int64  `json:"user_id,omitempty"`
@@ -53,4 +59,11 @@ type FeedResponse struct {
 type CommentListResponse struct {
 	Response
 	CommentList []CommentResponse `json:"comment_list,omitempty"`
+}
+
+func NewResponse(code int32, msg string) Response {
+	return Response{
+		StatusCode: code,
+		StatusMsg:  msg,
+	}
 }

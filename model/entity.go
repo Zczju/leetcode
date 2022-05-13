@@ -1,6 +1,8 @@
 package model
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 // TODO: https://gorm.io/zh_CN/docs/indexes.html
 
@@ -8,8 +10,8 @@ type Video struct {
 	gorm.Model
 	Id       int64 `json:"id,omitempty" `
 	AuthorID int64
-	Author   User   `json:"author"     `
-	PlayUrl  string `json:"play_url"            `
+	Author   User   `json:"author"`
+	PlayUrl  string `json:"play_url"  `
 	CoverUrl string `json:"cover_url,omitempty"   `
 }
 
@@ -28,10 +30,6 @@ type User struct {
 	Password       string `json:"-" `
 	PasswordHashed string `json:"-" `
 }
-
-//func (u *User) TableName() string {
-//	return "user_info"
-//}
 
 type Follow struct {
 	Id         int64  `json:"id,omitempty"`
