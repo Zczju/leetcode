@@ -57,7 +57,7 @@ func Login(c *gin.Context) {
 	c.JSON(200, data)
 }
 
-func QueryUserInfo(c *gin.Context) {
+func GetUserInfo(c *gin.Context) {
 	userIdStr := c.Query("user_id")
 	userId, err := strconv.ParseInt(userIdStr, 0, 64)
 	if err != nil {
