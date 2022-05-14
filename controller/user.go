@@ -41,19 +41,20 @@ func Login(c *gin.Context) {
 	username := c.Query("username")
 	password := c.Query("password")
 
-	token := username + password
-
-	if user, exist := usersLoginInfo[token]; exist {
-		c.JSON(http.StatusOK, model.UserLoginResponse{
-			Response: model.Response{StatusCode: 0},
-			UserId:   user.Id,
-			Token:    token,
-		})
-	} else {
-		c.JSON(http.StatusOK, model.UserLoginResponse{
-			Response: model.Response{StatusCode: 1, StatusMsg: "User doesn't exist"},
+	// TODO token 校验
+	if !utils.UserNameValid(username) {
+		c.JSON(200, &model.UserLoginResponse{
+			Response: model.NewResponse(-1, "username invalid"),
 		})
 	}
+	if !utils.PasswordValid(password) {
+		c.JSON(200, &model.UserLoginResponse{
+			Response: model.NewResponse(-1, "password invalid"),
+		})
+	}
+
+	data := service.NewUserLoginInstance(username, password).Login()
+	c.JSON(200, data)
 }
 
 func QueryUserInfo(c *gin.Context) {
